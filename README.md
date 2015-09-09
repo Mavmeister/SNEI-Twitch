@@ -6,3 +6,5 @@ Rules:
 - All UI elements are mandatory and self-explanatory
 - Feel free to add more/better UI, as long as you include the mandatory elements
 - No frameworks like jQuery/AngularJS.  Just vanilla JS with XHR to hit the API.
+
+API: https://api.twitch.tv/kraken/search/streams?q=starcraft
