@@ -11,40 +11,34 @@ var searchJSONP = function(){
 
 var buildResults = function(json){
   console.log('Streams', json);
-  console.log('Results Count', json._total);
-  console.log('Links', json._links);
   var channel = [];
   // Parse each channel and create an object with desired properties
   eachResults(json.streams, function(stream){
-    console.log('Stream', stream)
-    var singleStream = {};
-    singleStream.gameName = stream.channel.game;
-    singleStream.streamName = stream.channel.status;
-    singleStream.viewers = stream.viewers;
-    singleStream.user = stream.channel.name;
-    singleStream.previewImg = stream.preview.small;
-    console.log('adding:', singleStream)
-    channelContents = "<span id='stream-name'>" + singleStream.user + " NAME </span>";
-    channel.push(singleStream);
+    var channelObj = {};
+    channelObj.gameName = stream.channel.game;
+    channelObj.streamName = stream.channel.status;
+    channelObj.viewers = stream.viewers;
+    channelObj.user = stream.channel.name;
+    channelObj.previewImg = stream.preview.small;
+    channelContents = "<div id='stream-contents'><img id='stream-image' src='"
+     + channelObj.previewImg + " '><span id='stream-name'>"
+     + channelObj.streamName + "</span></br><span id='stream-game'>"
+     + channelObj.gameName + "</span> - <span id='stream-viewers'>"
+     + channelObj.viewers + " viewers</span><br/><span id='stream-desc'>"
+     + channelObj.user + "</span></div>";
+    channel.push(channelContents);
   });
-    document.getElementById('resultBox').appendChild(document.createElement('div'))
+    channelCount = "<span id='stream-count'>Total results:" + json._total + "</span>";
+    // REFACTOR: add count and result in one operation to container div
+    document.getElementById('countContainer').innerHTML = channelCount;
+    document.getElementById('paginationContainer').innerHTML = '< 1 out of 10 >'
+    document.getElementById('resultContainer').innerHTML = channel.join('');
 };
-
-
 
 var createElements = function(channel){
   var channelElement = document.createElement('div');
-  var channelContents = 'hello'
-  // var channelContents = "<span id='stream-name'>'channel.streamName' </span>
-  //   <span id='game-name'>'channel.gameName' 'channel.viewers' viewers</span>
-  //   <span id='game-desc'>'channel.user' playing! </span>"
   channelElement.appendChild(channelContents)
 }
-
-
-
-
-
 
 // Helper Functions
 var eachResults = function(collection, iterator){

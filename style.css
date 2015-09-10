@@ -1,11 +1,61 @@
-.searchBox {
+.searchContainer {
   text-align: center;
 }
+#countAndPage {
+ margin: auto;
+ position: relative;
+ width: 50%;
+}
+#countContainer {
+  left: 0px;
+}
 
-#resultBox {
-  text-align: center;
+#paginationContainer {
+  position: relative;
+  right: 0px;
+}
+
+#resultContainer {
+  text-align: left;
   margin: auto;
-  border: 1px solid red;
-  height: 700px;
+  height: 900px;
   width: 50%;
+}
+
+#stream-contents {
+  border: 2px solid purple;
+  height: 15%;
+  padding: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 10px;
+}
+
+#stream-name {
+  margin-left: -10px;
+  font-size: 25px;
+  font-style: bold;
+}
+
+#stream-image {
+  margin-right: 15px;
+  width: 20%;
+  height: 100%;
+  float: left;
+}
+
+#stream-game {
+  font-size: 20px;
+}
+
+#stream-viewers {
+  font-size: 20px;
+}
+
+#stream-desc {
+  font-size: 20px;
+}
+
+#stream-count {
+  font-size: 50px;
 }

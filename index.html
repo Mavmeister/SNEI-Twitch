@@ -9,13 +9,17 @@
 </head>
 <body>
 
-<div class="searchBox">
+<div class="searchContainer">
     <input id="searchInput" type="text" name="query">
     <button type="button" id="search-btn" onclick='searchJSONP()'>Search</button>
 </div>
-<div id='resultBox'>
 
+<div id='countAndPage'>
+  <span id='countContainer'></span>
+  <span id='paginationContainer'></span>
 </div>
+
+<div id='resultContainer'></div>
 
 </body>
 </html>
