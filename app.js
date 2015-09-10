@@ -1,5 +1,6 @@
 // GLOBAL 
 var searchRequest = new XMLHttpRequest();
+var currentPage = 1; 
 
 // SEARCH AND DATA FUNCTIONS
 var searchJSONP = function(query){
@@ -13,10 +14,12 @@ var searchJSONP = function(query){
   document.getElementsByTagName("head")[0].removeChild(scriptTag);
 };
 
-var navigatePage = function(link){
-  if (!link){
+var navigatePage = function(link, direction){
+  console.log(direction)
+  if (link === 'null'){
     return;
   }
+  direction === 'next' ? currentPage++ : currentPage--;
   var scriptTag = document.createElement('script');
   var searchQuery = link + "&callback=buildResults";
   scriptTag.setAttribute("src", searchQuery);
@@ -32,8 +35,7 @@ var buildResults = function(json){
   // Parse each channel and create an object with desired properties
   var channels = [];
   var nextPageLink =  json._links.next;
-  var prevPageLink =  json._links.prev  || null;
-  var currentPage = 1; 
+  var prevPageLink =  json._links.prev || null;
   var maxPage = Math.ceil(json._total / 10);
 
   json.streams.forEach(function(stream){
@@ -47,11 +49,11 @@ var buildResults = function(json){
     channels.push(channelContents);
   });
     channelCount = "<span id='stream-count'>Total results: " + json._total + "</span>";
-    nextPage = "<span id='next-page' onclick=navigatePage('" + nextPageLink + "')> NEXT " + maxPage + " </span>";
-    prevPage = "<span id='prev-page' onclick=navigatePage('" + prevPageLink + "')>" + currentPage + " PREV </span>";
+    nextPage = "<span id='next-page' onclick=navigatePage('" + nextPageLink + "','next')> NEXT " + maxPage + " </span>";
+    prevPage = "<span id='prev-page' onclick=navigatePage('" + prevPageLink + "','prev')>" + 1 + " PREV </span>";
 
     // REFACTOR: add count and result in one operation to container div
     document.getElementById('count-container').innerHTML = channelCount;
-    document.getElementById('page-container').innerHTML = prevPage + nextPage;
+    document.getElementById('page-container').innerHTML = prevPage + currentPage + nextPage;
     document.getElementById('result-container').innerHTML = channels.join('');
 };

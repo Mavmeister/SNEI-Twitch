@@ -1,6 +1,9 @@
 h2 {
   text-align: center;
 }
+.search-container {
+  text-align: center;
+}
 #tag {
   text-decoration: none;
   color: black;
@@ -9,12 +12,9 @@ h2 {
   text-decoration: none;
   color: purple;
 }
-.search-container {
-  text-align: center;
-}
 #next-page, #prev-page {
   border: 1px solid black;
-  margin: 1px;
+  margin: 5px;
   padding: 2px;
 }
 #search-input {
