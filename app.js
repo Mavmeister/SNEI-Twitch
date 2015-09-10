@@ -14,6 +14,7 @@ var buildResults = function(json){
   console.log('Results Count', json._total);
   console.log('Links', json._links);
   var channel = [];
+  // Parse each channel and create an object with desired properties
   eachResults(json.streams, function(stream){
     console.log('Stream', stream)
     var singleStream = {};
@@ -22,18 +23,22 @@ var buildResults = function(json){
     singleStream.viewers = stream.viewers;
     singleStream.user = stream.channel.name;
     singleStream.previewImg = stream.preview.small;
+    console.log('adding:', singleStream)
+    channelContents = "<span id='stream-name'>" + singleStream.user + " NAME </span>";
     channel.push(singleStream);
   });
-    document.getElementById('resultBox').appendChild(channel)
+    document.getElementById('resultBox').appendChild(document.createElement('div'))
 };
+
+
 
 var createElements = function(channel){
   var channelElement = document.createElement('div');
-  channelElement.appendChild(
-    <span id='stream-name'>channel.streamName</span><br/>
-    <span id='game-name'>'channel.gameName' + 'channel.viewers' + viewers</span>
-    <span id='game-desc'>'channel.user' playing! </span>
-    )
+  var channelContents = 'hello'
+  // var channelContents = "<span id='stream-name'>'channel.streamName' </span>
+  //   <span id='game-name'>'channel.gameName' 'channel.viewers' viewers</span>
+  //   <span id='game-desc'>'channel.user' playing! </span>"
+  channelElement.appendChild(channelContents)
 }
 
 
