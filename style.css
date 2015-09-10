@@ -7,11 +7,10 @@
  width: 50%;
 }
 #countContainer {
-  left: 0px;
 }
 
 #paginationContainer {
-  position: relative;
+  float: right;
   right: 0px;
 }
 
@@ -32,6 +31,7 @@
 }
 
 #stream-name {
+  overflow: hidden;
   margin-left: -10px;
   font-size: 25px;
   font-style: bold;
@@ -57,5 +57,5 @@
 }
 
 #stream-count {
-  font-size: 50px;
+  font-size: 20px;
 }
