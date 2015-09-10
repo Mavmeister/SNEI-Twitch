@@ -8,7 +8,13 @@
 <title>Twitch Stream Search</title>
 </head>
 <body>
-<div>
+
+<div class="searchBox">
+    <input id="searchInput" type="text" name="query">
+    <button type="button" id="search-btn" onclick='searchJSONP()'>Search</button>
+</div>
+<div id='resultBox'>
+
 </div>
 
 </body>
