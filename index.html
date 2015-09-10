@@ -8,18 +8,18 @@
   <title>Twitch Stream Search</title>
 </head>
 <body>
-
-  <div class="searchContainer">
-      <input id="searchInput" type="text" name="query" value="" placeholder="Search Twitch Here">
-      <button type="button" id="search-btn" onclick="searchJSONP(document.getElementById('searchInput').value)">Search</button>
+<h2> Search for Twitch Streams to View </h2>
+  <div class="search-container">
+      <input id="search-input" type="text" name="query" placeholder="Search Twitch Here">
+      <button type="button" id="search-btn" onclick="searchJSONP(document.getElementById('search-input').value)">Search</button>
   </div>
 
-  <div id="countAndPage">
-    <span id="countContainer"></span>
-    <span id="paginationContainer"></span>
+  <div id="count-page">
+    <span id="count-container"></span>
+    <span id="page-container"></span>
   </div>
 
-  <div id="resultContainer"></div>
+  <div id="result-container"></div>
 
 </body>
 </html>

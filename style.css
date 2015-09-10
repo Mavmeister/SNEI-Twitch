@@ -1,24 +1,40 @@
-.searchContainer {
+h2 {
   text-align: center;
 }
-#countAndPage {
+.search-container {
+  text-align: center;
+}
+
+#search-input {
+  text-align: center;
+  font-size: 15px;
+  height: 20px;
+  width: 15%;
+}
+#search-btn {
+  font-size: 15px;
+  height: 25px;
+  width: 80px;
+}
+#count-page {
  margin: auto;
  position: relative;
  width: 50%;
 }
-#countContainer {
+
+#count-container {
 }
 
-#paginationContainer {
+#page-container {
   float: right;
   right: 0px;
 }
 
-#resultContainer {
+#result-container {
   text-align: left;
   margin: auto;
   height: 900px;
-  width: 50%;
+  width: 75%;
 }
 
 #stream-contents {
@@ -44,18 +60,6 @@
   float: left;
 }
 
-#stream-game {
-  font-size: 20px;
-}
-
-#stream-viewers {
-  font-size: 20px;
-}
-
-#stream-desc {
-  font-size: 20px;
-}
-
-#stream-count {
+#stream-game, #stream-viewers, #stream-desc, #stream-count {
   font-size: 20px;
 }

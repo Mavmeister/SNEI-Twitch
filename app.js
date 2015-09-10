@@ -1,48 +1,47 @@
-// Global 
+// GLOBAL 
 var searchRequest = new XMLHttpRequest();
 
-// Search and Data Functions
+// SEARCH AND DATA FUNCTIONS
 var searchJSONP = function(query){
   var scriptTag = document.createElement('script');
+  // Creating a JSONP callback for CORS workaround
   var searchQuery = "https://api.twitch.tv/kraken/search/streams?q=" + query + "&callback=buildResults";
   scriptTag.setAttribute("src", searchQuery);
-  document.getElementById('searchInput').value = ''
+  document.getElementById('search-input').value = ''
+  // Adding a <script> with URL to retrieve JSON data and then removing it from DOM
   document.getElementsByTagName("head")[0].appendChild(scriptTag);
   document.getElementsByTagName("head")[0].removeChild(scriptTag);
 };
 
 var buildResults = function(json){
+  if (json.streams.length === 0){
+    return document.getElementById('result-container').innerHTML = "No Search Results Available"
+  }
   console.log('Streams', json);
-  var channel = [];
+  var channels = [];
   // Parse each channel and create an object with desired properties
   eachResults(json.streams, function(stream){
-    var channelObj = {};
-    channelObj.gameName = stream.channel.game;
-    channelObj.streamName = stream.channel.status;
-    channelObj.viewers = stream.viewers;
-    channelObj.user = stream.channel.name;
-    channelObj.previewImg = stream.preview.medium;
     channelContents = "<div id='stream-contents'><img id='stream-image' src='"
-     + channelObj.previewImg + " '><span id='stream-name'>"
-     + channelObj.streamName + "</span></br><span id='stream-game'>"
-     + channelObj.gameName + "</span> - <span id='stream-viewers'>"
-     + channelObj.viewers + " viewers</span><br/><span id='stream-desc'>"
-     + channelObj.user + "</span></div>";
-    channel.push(channelContents);
+     + stream.preview.medium + " '><span id='stream-name'>"
+     + stream.channel.status + "</span></br><span id='stream-game'>"
+     + stream.channel.game + "</span> - <span id='stream-viewers'>"
+     + stream.viewers + " viewers</span><br/><span id='stream-desc'>"
+     + stream.channel.name+ "</span></div>";
+    channels.push(channelContents);
   });
-    channelCount = "<span id='stream-count'>Total results:" + json._total + "</span>";
+    channelCount = "<span id='stream-count'>Total results: " + (json._total - 1) + "</span>";
     // REFACTOR: add count and result in one operation to container div
-    document.getElementById('countContainer').innerHTML = channelCount;
-    document.getElementById('paginationContainer').innerHTML = '< 1 out of 10 >'
-    document.getElementById('resultContainer').innerHTML = channel.join('');
+    document.getElementById('count-container').innerHTML = channelCount;
+    document.getElementById('page-container').innerHTML = '< 1 out of 10 >'
+    document.getElementById('result-container').innerHTML = channels.join('');
 };
 
-var createElements = function(channel){
+var nextPage = function(channel){
   var channelElement = document.createElement('div');
   channelElement.appendChild(channelContents)
 }
 
-// Helper Functions
+// HELPER FUNCTIONS
 var eachResults = function(collection, iterator){
   if(Array.isArray(collection)){
     for (var i = 0; i < collection.length; i++){
