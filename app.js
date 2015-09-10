@@ -17,7 +17,6 @@ var navigatePage = function(link){
   if (!link){
     return;
   }
-  console.log('link', link)
   var scriptTag = document.createElement('script');
   var searchQuery = link + "&callback=buildResults";
   scriptTag.setAttribute("src", searchQuery);
@@ -37,7 +36,7 @@ var buildResults = function(json){
   var currentPage = 1; 
   var maxPage = Math.ceil(json._total / 10);
 
-  eachResults(json.streams, function(stream){
+  json.streams.forEach(function(stream){
     channelContents = "<a id='tag' href="
      + stream.channel.url + "><div id='stream-contents'><img id='stream-image' src='"
      + stream.preview.medium + " '><span id='stream-name'>"
@@ -48,34 +47,11 @@ var buildResults = function(json){
     channels.push(channelContents);
   });
     channelCount = "<span id='stream-count'>Total results: " + json._total + "</span>";
-    nextPage = "<span id='next-page' onclick=navigatePage(" + nextPageLink + ")> NEXT " + maxPage + " </span>";
-    prevPage = "<span id='prev-page' onclick=navigatePage(" + prevPageLink + ")>" + currentPage + " PREV </span>";
+    nextPage = "<span id='next-page' onclick=navigatePage('" + nextPageLink + "')> NEXT " + maxPage + " </span>";
+    prevPage = "<span id='prev-page' onclick=navigatePage('" + prevPageLink + "')>" + currentPage + " PREV </span>";
 
     // REFACTOR: add count and result in one operation to container div
     document.getElementById('count-container').innerHTML = channelCount;
     document.getElementById('page-container').innerHTML = prevPage + nextPage;
     document.getElementById('result-container').innerHTML = channels.join('');
 };
-
-
-// HELPER FUNCTIONS
-var eachResults = function(collection, iterator){
-  if(Array.isArray(collection)){
-    for (var i = 0; i < collection.length; i++){
-      iterator(collection[i], i, collection);
-    };  
-  } else {
-    for (var keys in collection){
-      iterator(collection[i], keys, collection)
-    };
-  }
-};
-
-var mapResults = function(collection, iterator){
-  var mapped = [];
-  eachResults(collection, function(value){
-    mapped.push(iterator(value));
-  });
-  return mapped;
-};
-

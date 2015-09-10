@@ -5,6 +5,10 @@ h2 {
   text-decoration: none;
   color: black;
 }
+#tag:hover {
+  text-decoration: none;
+  color: purple;
+}
 .search-container {
   text-align: center;
 }
