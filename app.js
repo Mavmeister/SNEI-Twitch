@@ -2,9 +2,11 @@
 var searchRequest = new XMLHttpRequest();
 
 // Search and Data Functions
-var searchJSONP = function(){
+var searchJSONP = function(query){
   var scriptTag = document.createElement('script');
-  scriptTag.setAttribute("src", "https://api.twitch.tv/kraken/search/streams?q=Rust&callback=buildResults");
+  var searchQuery = "https://api.twitch.tv/kraken/search/streams?q=" + query + "&callback=buildResults";
+  scriptTag.setAttribute("src", searchQuery);
+  document.getElementById('searchInput').value = ''
   document.getElementsByTagName("head")[0].appendChild(scriptTag);
   document.getElementsByTagName("head")[0].removeChild(scriptTag);
 };
@@ -19,7 +21,7 @@ var buildResults = function(json){
     channelObj.streamName = stream.channel.status;
     channelObj.viewers = stream.viewers;
     channelObj.user = stream.channel.name;
-    channelObj.previewImg = stream.preview.small;
+    channelObj.previewImg = stream.preview.medium;
     channelContents = "<div id='stream-contents'><img id='stream-image' src='"
      + channelObj.previewImg + " '><span id='stream-name'>"
      + channelObj.streamName + "</span></br><span id='stream-game'>"

@@ -2,24 +2,24 @@
 <html>
 <link rel="stylesheet" href="style.css">
 <script src="app.js"></script>
-<link rel='icon' type='image/x-icon' href='assets/favicon.ico' />
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 
 <head>
-<title>Twitch Stream Search</title>
+  <title>Twitch Stream Search</title>
 </head>
 <body>
 
-<div class="searchContainer">
-    <input id="searchInput" type="text" name="query" >
-    <button type="button" id="search-btn" onclick='searchJSONP()'>Search</button>
-</div>
+  <div class="searchContainer">
+      <input id="searchInput" type="text" name="query" value="" placeholder="Search Twitch Here">
+      <button type="button" id="search-btn" onclick="searchJSONP(document.getElementById('searchInput').value)">Search</button>
+  </div>
 
-<div id='countAndPage'>
-  <span id='countContainer'></span>
-  <span id='paginationContainer'></span>
-</div>
+  <div id="countAndPage">
+    <span id="countContainer"></span>
+    <span id="paginationContainer"></span>
+  </div>
 
-<div id='resultContainer'></div>
+  <div id="resultContainer"></div>
 
 </body>
 </html>
