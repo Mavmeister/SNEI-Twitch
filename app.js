@@ -61,7 +61,7 @@ var buildResults = function(json){
 
   // Parse each channel and create an object with desired properties
   json.streams.forEach(function(stream){
-    channelContents = "<a id='contents' href="
+    channelContents = "<a id='contents' target='_blank' href="
      + stream.channel.url + "><div id='stream-contents'><img id='stream-image' src='"
      + stream.preview.medium + " '><span id='stream-name'>"
      + stream.channel.status + "</span></br><span id='stream-game'>"
