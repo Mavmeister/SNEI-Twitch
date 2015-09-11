@@ -1,4 +1,4 @@
-# SNEI-Twitch-
+# SNEI-Twitch
 Rules:
 - Write a simple web app that hits the Twitch API URL shown at the top (there are API docs online)
 - Build the URL based on the query entered by the user in the search box shown in the mock
