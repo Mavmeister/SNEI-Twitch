@@ -24,7 +24,6 @@ var searchJSONP = function(query){
 
 // Navigation function for querying next/prev search links
 var navigatePage = function(link, direction){
-  console.log(direction)
   if (link === 'null'){
     return;
   }
