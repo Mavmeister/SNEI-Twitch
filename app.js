@@ -1,8 +1,14 @@
 // GLOBAL 
-var searchRequest = new XMLHttpRequest();
 var currentPage = 1; 
 
 // SEARCH AND DATA FUNCTIONS
+var handleKey = function(event, value){
+  if (event.keyCode === 13){
+    searchJSONP(value)
+  }
+  return;
+};
+
 var searchJSONP = function(query){
   var scriptTag = document.createElement('script');
   // Creating a JSONP callback for CORS workaround
@@ -25,7 +31,7 @@ var navigatePage = function(link, direction){
   scriptTag.setAttribute("src", searchQuery);
   document.getElementsByTagName("head")[0].appendChild(scriptTag);
   document.getElementsByTagName("head")[0].removeChild(scriptTag);
-}
+};
 
 var buildResults = function(json){
   if (json.streams.length === 0){
@@ -49,11 +55,11 @@ var buildResults = function(json){
     channels.push(channelContents);
   });
     channelCount = "<span id='stream-count'>Total results: " + json._total + "</span>";
-    nextPage = "<span id='next-page' onclick=navigatePage('" + nextPageLink + "','next')> NEXT " + maxPage + " </span>";
-    prevPage = "<span id='prev-page' onclick=navigatePage('" + prevPageLink + "','prev')>" + 1 + " PREV </span>";
+    nextPage = "<span id='next-page' onclick=navigatePage('" + nextPageLink + "','next')> NEXT " + maxPage + ' &rArr;' + " </span>";
+    prevPage = "<span id='prev-page' onclick=navigatePage('" + prevPageLink + "','prev')>" + '&lArr; ' + 1 + " PREV </span>";
 
     // REFACTOR: add count and result in one operation to container div
     document.getElementById('count-container').innerHTML = channelCount;
-    document.getElementById('page-container').innerHTML = prevPage + currentPage + nextPage;
+    document.getElementById('page-container').innerHTML = prevPage + "<span id='current-page'>"+currentPage+"</span>" + nextPage;
     document.getElementById('result-container').innerHTML = channels.join('');
 };

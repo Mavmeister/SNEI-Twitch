@@ -13,20 +13,30 @@ h2 {
   color: purple;
 }
 #next-page, #prev-page {
-  border: 1px solid black;
   margin: 5px;
   padding: 2px;
+}
+#next-page:hover, #prev-page:hover {
+  cursor: pointer;
+  color: purple;
+  margin: 5px;
+  padding: 2px;
+}
+#current-page {
+  font-weight: bold;
 }
 #search-input {
   text-align: center;
   font-size: 15px;
   height: 20px;
   width: 15%;
+  margin-bottom: 10px;
 }
 #search-btn {
   font-size: 15px;
   height: 25px;
   width: 80px;
+  margin-bottom: 10px;
 }
 #count-page {
  margin: auto;
@@ -51,6 +61,7 @@ h2 {
 
 #stream-contents {
   border: 2px solid purple;
+  border-radius: 2%;
   height: 15%;
   padding: 5px;
   margin-top: 5px;
@@ -59,14 +70,15 @@ h2 {
 }
 
 #stream-name {
-  overflow: hidden;
+  font-weight: bold;
   margin-left: -10px;
-  font-size: 25px;
+  font-size: 20px;
   font-style: bold;
 }
 
 #stream-image {
   margin-right: 15px;
+  border-radius: 5%;
   width: 20%;
   height: 100%;
   float: left;
@@ -74,4 +86,6 @@ h2 {
 
 #stream-game, #stream-viewers, #stream-desc, #stream-count {
   font-size: 20px;
+  margin-top: 10px;
 }
+

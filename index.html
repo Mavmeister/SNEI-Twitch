@@ -10,7 +10,7 @@
 <body>
 <h2> Search for Twitch Streams to View </h2>
   <div class="search-container">
-      <input id="search-input" type="text" name="query" placeholder="Search Twitch Here">
+      <input id="search-input" type="text" name="query" onkeypress='handleKey(event, this.value)' placeholder="Search Twitch Here">
       <button type="button" id="search-btn" onclick="searchJSONP(document.getElementById('search-input').value)">Search</button>
   </div>
 
