@@ -1,6 +1,7 @@
 body {
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
   background-image: url("./assets/baseBg.png");
+  background-size: 100%;
 }
 h2 {
   text-align: center;
