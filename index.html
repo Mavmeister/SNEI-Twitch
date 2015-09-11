@@ -4,13 +4,14 @@
 <script src="app.js"></script>
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 
+
 <head>
   <title>Twitch Stream Search</title>
 </head>
 <body>
 <h2> Search for Twitch Streams to View </h2>
   <div class="search-container">
-      <input id="search-input" type="text" name="query" onkeypress='handleKey(event, this.value)' placeholder="Search Twitch Here">
+      <input id="search-input" type="text" name="query" onkeypress='handleKey(event, value)' placeholder="Search Twitch Here">
       <button type="button" id="search-btn" onclick="searchJSONP(document.getElementById('search-input').value)">Search</button>
   </div>
 
@@ -18,7 +19,6 @@
     <span id="count-container"></span>
     <span id="page-container"></span>
   </div>
-
   <div id="result-container"></div>
 
 </body>

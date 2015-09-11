@@ -1,20 +1,27 @@
+body {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  background-image: url("./assets/baseBg.png");
+}
 h2 {
   text-align: center;
+  color: purple;
 }
 .search-container {
   text-align: center;
 }
-#tag {
+#contents {
   text-decoration: none;
-  color: black;
+  color: white;
+  background: black;
 }
-#tag:hover {
+#contents:hover {
   text-decoration: none;
   color: purple;
 }
 #next-page, #prev-page {
   margin: 5px;
   padding: 2px;
+  color: white;
 }
 #next-page:hover, #prev-page:hover {
   cursor: pointer;
@@ -24,6 +31,7 @@ h2 {
 }
 #current-page {
   font-weight: bold;
+  color: white;
 }
 #search-input {
   text-align: center;
@@ -43,22 +51,16 @@ h2 {
  position: relative;
  width: 50%;
 }
-
-#count-container {
-}
-
 #page-container {
   float: right;
   right: 0px;
 }
-
 #result-container {
   text-align: left;
   margin: auto;
   height: 900px;
   width: 75%;
 }
-
 #stream-contents {
   border: 2px solid purple;
   border-radius: 2%;
@@ -68,14 +70,12 @@ h2 {
   margin-bottom: 5px;
   margin-left: 10px;
 }
-
 #stream-name {
   font-weight: bold;
   margin-left: -10px;
   font-size: 20px;
   font-style: bold;
 }
-
 #stream-image {
   margin-right: 15px;
   border-radius: 5%;
@@ -83,9 +83,14 @@ h2 {
   height: 100%;
   float: left;
 }
-
 #stream-game, #stream-viewers, #stream-desc, #stream-count {
   font-size: 20px;
-  margin-top: 10px;
+  margin-top: 20px;
 }
-
+#stream-count {
+  color: white;
+}
+#no-results {
+  color: red;
+  margin-left: 35%;
+}
