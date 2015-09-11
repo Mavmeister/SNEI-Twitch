@@ -1,7 +1,12 @@
-// GLOBAL 
+// -- GLOBAL --
 var currentPage = 1; 
 
-// SEARCH AND DATA FUNCTIONS
+// -- HELPER FUNCTIONS --
+var clearResults = function(){
+    document.getElementById('count-container').innerHTML = '';
+    document.getElementById('page-container').innerHTML = '';
+    document.getElementById('result-container').innerHTML = '';
+};
 
 // Handles listening for ENTER keypress to search
 var handleKey = function(event, value){
@@ -11,8 +16,14 @@ var handleKey = function(event, value){
   return;
 };
 
+// -- SEARCH AND DATA FUNCTIONS --
+
 // Query function using JSONP and callback for CORS workaround
 var searchJSONP = function(query){
+  if (!query){
+    clearResults();
+    return document.getElementById('result-container').innerHTML = "<span id='no-results'> Please Enter a Value to Search </span>";
+  }
   var scriptTag = document.createElement('script');
   var searchQuery = "https://api.twitch.tv/kraken/search/streams?q=" + query + "&callback=buildResults";
   scriptTag.setAttribute("src", searchQuery);
@@ -35,11 +46,11 @@ var navigatePage = function(link, direction){
   document.getElementsByTagName("head")[0].removeChild(scriptTag);
 };
 
+
 // Builds all results on the page after a successful search
 var buildResults = function(json){
   // Clear results/page count to avoid remnants of past search when No Results appear
-    document.getElementById('count-container').innerHTML = '';
-    document.getElementById('page-container').innerHTML = '';
+  clearResults()
   if (json.streams.length === 0){
     return document.getElementById('result-container').innerHTML = "<span id='no-results'> No Search Results Available </span>";
   }
