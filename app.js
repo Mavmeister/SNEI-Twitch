@@ -11,27 +11,32 @@ var clearResults = function(){
 // Handles listening for ENTER keypress to search
 var handleKey = function(event, value){
   if (event.keyCode === 13){
-    searchJSONP(value)
+    twitch(value)
   }
   return;
 };
 
 // -- SEARCH AND DATA FUNCTIONS --
 
-// Query function using JSONP and callback for CORS workaround
-var searchJSONP = function(query){
-  if (!query){
-    clearResults();
-    return document.getElementById('result-container').innerHTML = "<span id='no-results'> Please Enter a Value to Search </span>";
-  }
-  var scriptTag = document.createElement('script');
-  var searchQuery = "https://api.twitch.tv/kraken/search/streams?q=" + query + "&callback=buildResults";
-  scriptTag.setAttribute("src", searchQuery);
-  document.getElementById('search-input').value = ''
-  // Adding a <script> with URL to retrieve JSON data and then removing it from DOM
-  document.getElementsByTagName("head")[0].appendChild(scriptTag);
-  document.getElementsByTagName("head")[0].removeChild(scriptTag);
-};
+var twitchSearch = function(query){
+  var results;
+    if (!query){
+      clearResults();
+      return document.getElementById('result-container').innerHTML = "<span id='no-results'> Please Enter a Value to Search </span>";
+    }
+  var twitchRequest = new XMLHttpRequest();
+  var fullQuery = "https://api.twitch.tv/kraken/search/streams?q=" + query;
+  twitchRequest.open("GET", fullQuery);
+  twitchRequest.onload = function(e) {
+    if (twitchRequest.readyState === 4 && twitchRequest.status === 200){
+      results = JSON.parse(twitchRequest.responseText);
+    } else {
+      console.error(twitchRequest.statusText)
+    }
+    buildResults(results)  
+  };
+  twitchRequest.send();
+  };
 
 // Navigation function for querying next/prev search links
 var navigatePage = function(link, direction){
