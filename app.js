@@ -27,7 +27,7 @@ var twitchSearch = function(query){
   var twitchRequest = new XMLHttpRequest();
   var fullQuery = "https://api.twitch.tv/kraken/search/streams?q=" + query;
   twitchRequest.open("GET", fullQuery);
-  twitchRequest.onload = function(e) {
+  twitchRequest.onload = function() {
     if (twitchRequest.readyState === 4 && twitchRequest.status === 200){
       results = JSON.parse(twitchRequest.responseText);
     } else {
